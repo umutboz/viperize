@@ -1,0 +1,66 @@
+//
+//  
+//  Viper Creater
+//  [MODEL]Interactor.swift
+//  Created by Umut BOZ on 29/07/2018.
+//  Copyright © 2018 OneFrame Mobile - Koçsistem All rights reserved.
+//
+import UIKit
+//import PKHUD
+
+class [MODEL]Interactor: [MODEL]InteractorInputProtocol {
+    weak var presenter: [MODEL]InteractorOutputProtocol?
+    var localDatamanager: [MODEL]LocalDataManagerInputProtocol?
+    var remoteDatamanager: [MODEL]RemoteDataManagerInputProtocol?
+    
+    /*
+    func retrieve[MODEL]List() {
+        do {
+            
+            if let [MODEL]List = try localDatamanager?.retrieve[MODEL]List() {
+                if  [MODEL]List.isEmpty {
+                    remoteDatamanager?.retrieve[MODEL]()
+                }else
+                {
+                     presenter?.didRetrieve[MODEL]s([MODEL]List)
+                }
+                
+            }else
+            {
+                remoteDatamanager?.retrieve[MODEL]List()
+            }
+           
+            //remoteDatamanager?.retrieve[MODEL]List()
+            
+        } catch {
+            presenter?.didRetrieve[MODEL]s([])
+        }
+    }
+    */
+
+        
+}
+
+extension [MODEL]Interactor: [MODEL]RemoteDataManagerOutputProtocol {
+    
+    /*
+    func on[MODEL]sRetrieved(_ [MODEL]s: [[MODEL]]) {
+        presenter?.didRetrieve[MODEL]s([MODEL]s)
+        
+        do {
+             try localDatamanager?.save[MODEL]s([MODEL]s) 
+        }
+        catch
+        {
+            
+        }
+    }
+    
+    func onError() {
+        presenter?.onError()
+    }
+    */
+    
+}
+
+

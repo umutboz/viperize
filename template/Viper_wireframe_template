@@ -1,0 +1,57 @@
+//
+//  
+//  Viper Creater
+//  [MODEL]WireFrame.swift
+//  Created by Umut BOZ on 29/07/2018.
+//  Copyright © 2018 OneFrame Mobile - Koçsistem All rights reserved.
+//WireFrame
+
+import UIKit
+
+class [MODEL]WireFrame: [MODEL]WireFrameProtocol {
+    
+    class func create[MODEL]Module() -> UIViewController {
+        let navController = mainStoryboard.instantiateViewController(withIdentifier: "[MODEL]NavigationController")
+        if let view = navController.childViewControllers.first as? [MODEL]View {
+            let presenter: [MODEL]PresenterProtocol & [MODEL]InteractorOutputProtocol = [MODEL]Presenter()
+            let interactor: [MODEL]InteractorInputProtocol & [MODEL]RemoteDataManagerOutputProtocol = [MODEL]Interactor()
+            
+            let localDataManager: [MODEL]LocalDataManagerInputProtocol = [MODEL]LocalDataManager()
+ 
+            let remoteDataManager: [MODEL]RemoteDataManagerInputProtocol = [MODEL]RemoteDataManager()
+            let wireFrame: [MODEL]WireFrameProtocol = [MODEL]WireFrame()
+            
+            view.presenter = presenter
+            presenter.view = view
+            presenter.wireFrame = wireFrame
+            presenter.interactor = interactor
+            interactor.presenter = presenter
+            interactor.localDatamanager = localDataManager
+            interactor.remoteDatamanager = remoteDataManager
+            remoteDataManager.remoteRequestHandler = interactor
+            
+            return navController
+        }
+        return UIViewController()
+    }
+    
+    static var mainStoryboard: UIStoryboard {
+        return UIStoryboard(name: "[MODEL]", bundle: Bundle.main)
+    }
+    
+
+    /*
+    func present[MODEL]DetailScreen(from view: [MODEL]ViewProtocol, for[MODEL] [MODEL]Model: [MODEL]) {
+        let [MODEL]DetailViewController = [MODEL]DetailWireFrame.create[MODEL]DetailModule(for[MODEL]: [MODEL]Model)
+   
+        
+        if let sourceView = view as? UIViewController {
+           sourceView.navigationController?.pushViewController([MODEL]DetailViewController, animated: true)
+        }
+        
+    }
+    */
+    
+}
+
+

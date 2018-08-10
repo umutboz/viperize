@@ -1,0 +1,78 @@
+//
+//  
+//  Viper Creater
+//  [MODEL]Protocols.swift
+//  Created by Umut BOZ on 29/03/2018.
+//  Copyright © 2018 OneFrame Mobile - Koçsistem All rights reserved.
+//
+import UIKit
+
+protocol [MODEL]ViewProtocol: class {
+    var presenter: [MODEL]PresenterProtocol? { get set }
+    
+    // PRESENTER -> VIEW
+    //func showProjects(with projects: [ProjectModel])
+    
+    //func showError()
+    
+    //func showLoading()
+    
+    //func hideLoading()
+  
+}
+
+protocol [MODEL]WireFrameProtocol: class {
+    static func create[MODEL]Module() -> UIViewController
+    // PRESENTER -> WIREFRAME
+    //func presentOtherScreen(from view: [MODEL]ViewProtocol, forModel model: [MODEL])
+}
+
+protocol [MODEL]PresenterProtocol: class {
+    var view: [MODEL]ViewProtocol? { get set }
+    var interactor: [MODEL]InteractorInputProtocol? { get set }
+    var wireFrame: [MODEL]WireFrameProtocol? { get set }
+    
+    // VIEW -> PRESENTER
+    func viewDidLoad()
+    //func showProjectDetail(forProject project: ProjectModel)
+    //func filterProjectList(withProjectList projectList: [ProjectModel], searchText : String) -> [ProjectModel]
+  
+}
+
+protocol [MODEL]InteractorOutputProtocol: class {
+    // INTERACTOR -> PRESENTER
+    //func didRetrieveProjects(_ projects: [ProjectModel])
+    //func onError()
+}
+
+protocol [MODEL]InteractorInputProtocol: class {
+    var presenter: [MODEL]InteractorOutputProtocol? { get set }
+    var localDatamanager: [MODEL]LocalDataManagerInputProtocol? { get set }
+    var remoteDatamanager: [MODEL]RemoteDataManagerInputProtocol? { get set }
+    
+    // PRESENTER -> INTERACTOR
+    //func retrieveProjectList()
+}
+
+protocol [MODEL]DataManagerInputProtocol: class {
+    // INTERACTOR -> DATAMANAGER
+}
+
+protocol [MODEL]RemoteDataManagerInputProtocol: class {
+    var remoteRequestHandler: [MODEL]RemoteDataManagerOutputProtocol? { get set }
+    
+    // INTERACTOR -> REMOTEDATAMANAGER
+    //func retrieveProjectList()
+}
+
+protocol [MODEL]RemoteDataManagerOutputProtocol: class {
+    // REMOTEDATAMANAGER -> INTERACTOR
+    //func on[MODEL]Retrieved(_ projects: [[MODEL]])
+    //func onError()
+}
+
+protocol [MODEL]LocalDataManagerInputProtocol: class {
+     // INTERACTOR -> LOCALDATAMANAGER
+    //func retrieveProjectList() throws -> [ProjectModel]?
+    //func saveProjects(_ projects: [ProjectModel]) throws
+}

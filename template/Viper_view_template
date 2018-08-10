@@ -1,0 +1,71 @@
+//
+//  
+//  Viper Creater
+//  [MODEL]View.swift
+//  Created by Umut BOZ on 29/07/2018.
+//  Copyright © 2018 OneFrame Mobile - Koçsistem All rights reserved.
+//
+import UIKit
+//import PKHUD
+
+class [MODEL]View: UIViewController {
+    
+    //@IBOutlet weak var tableView: UITableView!
+    var presenter: [MODEL]PresenterProtocol?
+    //var [MODEL]List: [[MODEL]] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        presenter?.viewDidLoad()
+        //tableView.tableFooterView = UIView()
+    }
+    
+}
+
+extension [MODEL]View: [MODEL]ViewProtocol {
+    
+    /*
+    func show[MODEL]s(with [MODEL]: [[MODEL]]) {
+        [MODEL]List = [MODEL]s
+        tableView.reloadData()
+    }
+    
+    func showError() {
+        HUD.flash(.label("Internet not connected"), delay: 2.0)
+    }
+    
+    func showLoading() {
+        HUD.show(.progress)
+    }
+    
+    func hideLoading() {
+        HUD.hide()
+    }
+    */
+    
+}
+/*
+extension [MODEL]View: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "[MODEL]Cell", for: indexPath) as! [MODEL]TableViewCell
+        
+        //let [MODEL] = search[MODEL][indexPath.row]
+        cell.set(for[MODEL]: [MODEL])
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return search[MODEL].count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.show[MODEL]Detail(for[MODEL]: search[MODEL][indexPath.row])
+    }
+    
+}
+*/
+
+

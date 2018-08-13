@@ -44,7 +44,7 @@ extension [MODEL]Presenter: [MODEL]InteractorOutputProtocol {
         view?.show[MODEL]s(with: [MODEL]s)
     }
     */
-    
+    /*
     func onError() {
         view?.hideLoading()
         view?.showError()

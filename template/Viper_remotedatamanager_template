@@ -10,7 +10,7 @@
 
 class [MODEL]RemoteDataManager:[MODEL]RemoteDataManagerInputProtocol {
 
-    var [MODEL]List : [[MODEL]]? = [[MODEL]]()
+    //var [MODEL]List : [[MODEL]]? = [[MODEL]]()
    
     var remoteRequestHandler: [MODEL]RemoteDataManagerOutputProtocol?
     

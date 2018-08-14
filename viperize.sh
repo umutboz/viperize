@@ -6,7 +6,6 @@ exec python $0 ${1+"$@"}
 import os
 import sys
 import re
-import requests
 import urllib2
 import ssl
 

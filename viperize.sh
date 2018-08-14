@@ -6,44 +6,46 @@ exec python $0 ${1+"$@"}
 import os
 import sys
 import re
-
+import requests
+import urllib2
+import ssl
 
 MODULES = 'Modules'
 
 PROTOCOLS = 'Protocols'
-PROTOCOL_TEMPLATE = "Viper_protocol_template"
+PROTOCOL_TEMPLATE = "https://raw.githubusercontent.com/umutboz/viperize/master/template/Viper_protocol_template"
 protocol_filename = 'Protocols.swift'
 protocol_file_content = ''
 
 PRESENTER = 'Presenter'
-PRESENTER_TEMPLATE = "Viper_presenter_template"
+PRESENTER_TEMPLATE = "https://raw.githubusercontent.com/umutboz/viperize/master/template/Viper_presenter_template"
 presenter_file_content = ''
 presenter_filename = 'Presenter.swift'
 
 
 VIEW = 'View'
-VIEW_TEMPLATE = "Viper_view_template"
+VIEW_TEMPLATE = "https://raw.githubusercontent.com/umutboz/viperize/master/template/Viper_view_template"
 view_file_content = ''
 view_filename = 'View.swift'
 
 
 DATAMANAGER = 'DataManager'
-LOCAL_DATA_MANAGER_TEMPLATE = "Viper_localdatamanager_template"
+LOCAL_DATA_MANAGER_TEMPLATE = "https://raw.githubusercontent.com/umutboz/viperize/master/template/Viper_localdatamanager_template"
 local_data_manager_file_content = ''
 local_data_manager_filename = 'LocalDataManager.swift'
 
-REMOTE_DATA_MANAGER_TEMPLATE = "Viper_remotedatamanager_template"
+REMOTE_DATA_MANAGER_TEMPLATE = "https://raw.githubusercontent.com/umutboz/viperize/master/template/Viper_remotedatamanager_template"
 remote_data_manager_file_content = ''
 remote_data_manager_filename = 'RemoteDataManager.swift'
 
 
 INTERACTOR = 'Interactor'
-INTERACTOR_TEMPLATE = "Viper_interactor_template"
+INTERACTOR_TEMPLATE = "https://raw.githubusercontent.com/umutboz/viperize/master/template/Viper_interactor_template"
 interactor_file_content = ''
 interactor_filename = 'Interactor.swift'
 
 WIREFRAME = 'WireFrame'
-WIREFRAME_TEMPLATE = "Viper_wireframe_template"
+WIREFRAME_TEMPLATE = "https://raw.githubusercontent.com/umutboz/viperize/master/template/Viper_wireframe_template"
 wireframe_file_content = ''
 wireframe_filename = 'WireFrame.swift'
 
@@ -51,7 +53,6 @@ TEMPLATE_FOLDER = "template/"
 module = ''
 root_path = ''
 folders = [DATAMANAGER, INTERACTOR, PRESENTER, PROTOCOLS, VIEW, WIREFRAME]
-
 
 def createFolder ():
 	print root_path
@@ -78,10 +79,17 @@ def createFile(fileName, content):
 
 def getFileContent(file):
 	fileContent = ""
-	with open(file) as f:
-		lines = f.readlines()
-		for line in lines:
-			fileContent = fileContent + str(line)
+	try:
+		gcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+		data = urllib2.urlopen(INTERACTOR_TEMPLATE, context=gcontext).read(20000)
+		#data = data.split("\n")
+		fileContent=data.strip()
+	except urllib2.HTTPError as e:
+		print('HTTPError = ' + str(e.code))
+	except urllib2.URLError as e:
+		print('URLError = ' + str(e.reason))
+	except Exception as e:
+		print('generic exception: ' + str(e))
 	return fileContent
 
 #coding start

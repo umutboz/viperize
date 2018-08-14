@@ -81,7 +81,7 @@ def getFileContent(file):
 	fileContent = ""
 	try:
 		gcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
-		data = urllib2.urlopen(INTERACTOR_TEMPLATE, context=gcontext).read(20000)
+		data = urllib2.urlopen(file, context=gcontext).read(20000)
 		#data = data.split("\n")
 		fileContent=data.strip()
 	except urllib2.HTTPError as e:
@@ -108,7 +108,7 @@ if len(sys.argv) >= 2:
 	protocol_filename = module + protocol_filename
 	print protocol_filename
 	#model protocol replacement
-	protocol_file_content =  multiple_replace(getFileContent(TEMPLATE_FOLDER+PROTOCOL_TEMPLATE),  replacement)
+	protocol_file_content =  multiple_replace(getFileContent(PROTOCOL_TEMPLATE),  replacement)
 	#print protocol_file_content
 	#protocols file create 
 	protocol_file_path = root_path + PROTOCOLS + "/" + protocol_filename
@@ -121,7 +121,7 @@ if len(sys.argv) >= 2:
 	presenter_filename = module + presenter_filename
 	print presenter_filename
 	#model presenter replacement
-	presenter_file_content =  multiple_replace(getFileContent(TEMPLATE_FOLDER+PRESENTER_TEMPLATE),  replacement)
+	presenter_file_content =  multiple_replace(getFileContent(PRESENTER_TEMPLATE),  replacement)
 	presenter_file_path = root_path + PRESENTER + "/" + presenter_filename
 	createFile(presenter_file_path,presenter_file_content)
 	#PRESENTER operations END
@@ -131,7 +131,7 @@ if len(sys.argv) >= 2:
 	view_filename = module + view_filename
 	print view_filename
 	#model view replacement
-	view_file_content =  multiple_replace(getFileContent(TEMPLATE_FOLDER+VIEW_TEMPLATE),  replacement)
+	view_file_content =  multiple_replace(getFileContent(VIEW_TEMPLATE),  replacement)
 	view_file_path = root_path + VIEW + "/" + view_filename
 	createFile(view_file_path,view_file_content)
 	#VIEW operations END
@@ -141,7 +141,7 @@ if len(sys.argv) >= 2:
 	local_data_manager_filename = module + local_data_manager_filename
 	print local_data_manager_filename
 	#model local_data_manager replacement
-	local_data_manager_file_content =  multiple_replace(getFileContent(TEMPLATE_FOLDER+LOCAL_DATA_MANAGER_TEMPLATE),  replacement)
+	local_data_manager_file_content =  multiple_replace(getFileContent(LOCAL_DATA_MANAGER_TEMPLATE),  replacement)
 	local_data_manager_file_path = root_path + DATAMANAGER + "/" + local_data_manager_filename
 	createFile(local_data_manager_file_path,local_data_manager_file_content)
 	#LOCAL_DATA_MANAGER operations END
@@ -150,7 +150,7 @@ if len(sys.argv) >= 2:
 	remote_data_manager_filename = module + remote_data_manager_filename
 	print remote_data_manager_filename
 	#model local_data_manager replacement
-	remote_data_manager_file_content =  multiple_replace(getFileContent(TEMPLATE_FOLDER+REMOTE_DATA_MANAGER_TEMPLATE),  replacement)
+	remote_data_manager_file_content =  multiple_replace(getFileContent(REMOTE_DATA_MANAGER_TEMPLATE),  replacement)
 	remote_data_manager_file_path = root_path + DATAMANAGER + "/" + remote_data_manager_filename
 	createFile(remote_data_manager_file_path,remote_data_manager_file_content)
 	#REMOTE_DATA_MANAGER operations END
@@ -160,7 +160,7 @@ if len(sys.argv) >= 2:
 	interactor_filename = module + interactor_filename
 	print interactor_filename
 	#model interactor replacement
-	interactor_file_content =  multiple_replace(getFileContent(TEMPLATE_FOLDER+INTERACTOR_TEMPLATE),  replacement)
+	interactor_file_content =  multiple_replace(getFileContent(INTERACTOR_TEMPLATE),  replacement)
 	interactor_file_path = root_path + INTERACTOR + "/" + interactor_filename
 	createFile(interactor_file_path,interactor_file_content)
 	#INTERACTOR operations END
@@ -169,7 +169,7 @@ if len(sys.argv) >= 2:
 	wireframe_filename = module + wireframe_filename
 	print wireframe_filename
 	#model wirefamre replacement
-	wireframe_file_content =  multiple_replace(getFileContent(TEMPLATE_FOLDER+WIREFRAME_TEMPLATE),  replacement)
+	wireframe_file_content =  multiple_replace(getFileContent(WIREFRAME_TEMPLATE),  replacement)
 	wireframe_file_path = root_path + WIREFRAME + "/" + wireframe_filename
 	createFile(wireframe_file_path,wireframe_file_content)
 	#WIREFRAME operations END

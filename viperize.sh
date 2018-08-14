@@ -8,6 +8,7 @@ import sys
 import re
 import urllib2
 import ssl
+#1.6.0
 
 MODULES = 'Modules'
 

@@ -1,78 +1,49 @@
 //
-//  
-//  Viper Creater
+//
+//  Viper Creater 2.0
 //  [MODEL]Protocols.swift
-//  Created by Umut BOZ on 29/03/2018.
+//  Created by Umut BOZ on 04/09/2018.
 //  Copyright © 2018 OneFrame Mobile - Koçsistem All rights reserved.
 //
 import UIKit
 
-protocol [MODEL]ViewProtocol: class {
-    var presenter: [MODEL]PresenterProtocol? { get set }
-    
-    // PRESENTER -> VIEW
-    //func showProjects(with projects: [ProjectModel])
-    
-    //func showError()
-    
-    //func showLoading()
-    
-    //func hideLoading()
-  
+//MARK: - [MODEL] Shared Protocols
+protocol [MODEL]WireFrameProtocol: class {
+    // PRESENTER -> WIREFRAME
+    static func create[MODEL]ModuleWithStoryboard() -> UIViewController
+    static func create[MODEL]Module() -> UIViewController
+    //func presentOtherScreen(from view: [MODEL]ViewProtocol, forModel model: [MODEL])
+
+    //DONT REMOVE '{FOR SUB_IN}' COMMENT LINE
+    //{FOR SUB_IN}
 }
 
-protocol [MODEL]WireFrameProtocol: class {
-    static func create[MODEL]Module() -> UIViewController
-    // PRESENTER -> WIREFRAME
-    //func presentOtherScreen(from view: [MODEL]ViewProtocol, forModel model: [MODEL])
+//MARK: - [MODEL]
+protocol [MODEL]InteractorOutputProtocol: class {
+    // INTERACTOR -> PRESENTER
+}
+protocol [MODEL]InteractorInputProtocol: class {
+    // PRESENTER -> INTERACTOR
+    var presenter: [MODEL]InteractorOutputProtocol? { get set }
+}
+
+protocol [MODEL]ViewProtocol: class {
+    // PRESENTER -> VIEW
+    var presenter: [MODEL]PresenterProtocol? { get set }
+
+    //func showError()
+    //func showLoading()
+    //func hideLoading()
 }
 
 protocol [MODEL]PresenterProtocol: class {
+    // VIEW -> PRESENTER
     var view: [MODEL]ViewProtocol? { get set }
     var interactor: [MODEL]InteractorInputProtocol? { get set }
     var wireFrame: [MODEL]WireFrameProtocol? { get set }
-    
-    // VIEW -> PRESENTER
+
     func viewDidLoad()
-    //func showProjectDetail(forProject project: ProjectModel)
-    //func filterProjectList(withProjectList projectList: [ProjectModel], searchText : String) -> [ProjectModel]
-  
 }
 
-protocol [MODEL]InteractorOutputProtocol: class {
-    // INTERACTOR -> PRESENTER
-    //func didRetrieveProjects(_ projects: [ProjectModel])
-    //func onError()
-}
-
-protocol [MODEL]InteractorInputProtocol: class {
-    var presenter: [MODEL]InteractorOutputProtocol? { get set }
-    var localDatamanager: [MODEL]LocalDataManagerInputProtocol? { get set }
-    var remoteDatamanager: [MODEL]RemoteDataManagerInputProtocol? { get set }
-    
-    // PRESENTER -> INTERACTOR
-    //func retrieveProjectList()
-}
-
-protocol [MODEL]DataManagerInputProtocol: class {
-    // INTERACTOR -> DATAMANAGER
-}
-
-protocol [MODEL]RemoteDataManagerInputProtocol: class {
-    var remoteRequestHandler: [MODEL]RemoteDataManagerOutputProtocol? { get set }
-    
-    // INTERACTOR -> REMOTEDATAMANAGER
-    //func retrieveProjectList()
-}
-
-protocol [MODEL]RemoteDataManagerOutputProtocol: class {
-    // REMOTEDATAMANAGER -> INTERACTOR
-    //func on[MODEL]Retrieved(_ projects: [[MODEL]])
-    //func onError()
-}
-
-protocol [MODEL]LocalDataManagerInputProtocol: class {
-     // INTERACTOR -> LOCALDATAMANAGER
-    //func retrieveProjectList() throws -> [ProjectModel]?
-    //func saveProjects(_ projects: [ProjectModel]) throws
-}
+//DONT REMOVE '{FOR SUB}' COMMENT LINE
+//{FOR SUB}

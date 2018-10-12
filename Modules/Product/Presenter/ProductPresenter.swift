@@ -1,25 +1,25 @@
 //
 //
 //  Viper Creater 2.0
-//  [MODEL]Presenter.swift
+//  ProductPresenter.swift
 //  Created by Umut BOZ on 04/09/2018.
 //  Copyright © 2018 OneFrame Mobile - Koçsistem All rights reserved.
 //
 
 import Foundation
-class [MODEL]Presenter: [MODEL]PresenterProtocol {
+class ProductPresenter: ProductPresenterProtocol {
 
-    weak var view: [MODEL]ViewProtocol?
-    var interactor: [MODEL]InteractorInputProtocol?
-    var wireFrame: [MODEL]WireFrameProtocol?
+    weak var view: ProductViewProtocol?
+    var interactor: ProductInteractorInputProtocol?
+    var wireFrame: ProductWireFrameProtocol?
 
     func viewDidLoad() {
         //view?.showLoading()
-        //interactor?.retrieve[MODEL]()
+        //interactor?.retrieveProduct()
     }
 }
 
-extension [MODEL]Presenter: [MODEL]InteractorOutputProtocol {
+extension ProductPresenter: ProductInteractorOutputProtocol {
     /*
     func onError() {
         view?.hideLoading()

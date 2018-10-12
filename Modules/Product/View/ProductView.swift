@@ -1,18 +1,18 @@
 //
 //
 //  Viper Creater 2.0
-//  [MODEL]View.swift
+//  ProductView.swift
 //  Created by Umut BOZ on 04/09/2018.
 //  Copyright © 2018 OneFrame Mobile - Koçsistem All rights reserved.
 //
 import UIKit
 //import PKHUD
 
-class [MODEL]View: UIViewController {
+class ProductView: UIViewController {
 
     //@IBOutlet weak var tableView: UITableView!
-    var presenter: [MODEL]PresenterProtocol?
-    //var [MODEL]List: [[MODEL]] = []
+    var presenter: ProductPresenterProtocol?
+    //var ProductList: [Product] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +22,11 @@ class [MODEL]View: UIViewController {
 
 }
 
-extension [MODEL]View: [MODEL]ViewProtocol {
+extension ProductView: ProductViewProtocol {
 
     /*
-    func show[MODEL]s(with [MODEL]: [[MODEL]]) {
-        [MODEL]List = [MODEL]s
+    func showProducts(with Product: [Product]) {
+        ProductList = Products
         tableView.reloadData()
     }
 
@@ -45,24 +45,24 @@ extension [MODEL]View: [MODEL]ViewProtocol {
 
 }
 /*
-extension [MODEL]View: UITableViewDataSource, UITableViewDelegate {
+extension ProductView: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "[MODEL]Cell", for: indexPath) as! [MODEL]TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! ProductTableViewCell
 
-        //let [MODEL] = search[MODEL][indexPath.row]
-        cell.set(for[MODEL]: [MODEL])
+        //let Product = searchProduct[indexPath.row]
+        cell.set(forProduct: Product)
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return search[MODEL].count
+        return searchProduct.count
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.show[MODEL]Detail(for[MODEL]: search[MODEL][indexPath.row])
+        presenter?.showProductDetail(forProduct: searchProduct[indexPath.row])
     }
 
 }

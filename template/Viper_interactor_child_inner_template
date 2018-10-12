@@ -1,0 +1,8 @@
+
+//MARK: - [MODEL][SUB]
+extension [MODEL]Interactor : [MODEL][SUB]InteractorInputProtocol{
+
+    /*
+     [MODEL][SUB] module consume or create data operations
+     */
+}

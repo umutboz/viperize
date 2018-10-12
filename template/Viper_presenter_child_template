@@ -1,0 +1,24 @@
+//
+//
+//  Viper Creater 2.0
+//  [MODEL]Presenter.swift
+//  Created by Umut BOZ on 04/09/2018.
+//  Copyright © 2018 OneFrame Mobile - Koçsistem All rights reserved.
+//
+
+import Foundation
+class [MODEL][SUB]Presenter: [MODEL][SUB]PresenterProtocol {
+
+    weak var view: [MODEL][SUB]ViewProtocol?
+    var interactor: [MODEL][SUB]InteractorInputProtocol?
+    var wireFrame: [MODEL]WireFrameProtocol?
+
+    func viewDidLoad() {
+        //view?.showLoading()
+
+    }
+}
+
+extension [MODEL][SUB]Presenter: [MODEL][SUB]InteractorOutputProtocol {
+
+}

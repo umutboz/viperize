@@ -1,0 +1,15 @@
+
+//MARK: - [MODEL][SUB]
+class func create[MODEL][SUB]Module() -> UIViewController {
+   let view = [modelLowerCase]Storyboard.instantiateViewController(withIdentifier: String(describing: [MODEL][SUB]View.self)) as! [MODEL][SUB]View
+   let presenter: [MODEL][SUB]PresenterProtocol & [MODEL][SUB]InteractorOutputProtocol = [MODEL][SUB]Presenter()
+   let interactor: [MODEL][SUB]InteractorInputProtocol = [MODEL]Interactor()
+   let wireFrame: [MODEL]WireFrameProtocol = [MODEL]WireFrame()
+
+   view.presenter = presenter
+   presenter.view = view
+   presenter.wireFrame = wireFrame
+   presenter.interactor = interactor
+   interactor.presenter[SUB] = presenter
+   return view
+}

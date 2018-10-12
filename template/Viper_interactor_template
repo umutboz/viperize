@@ -1,66 +1,25 @@
 //
-//  
-//  Viper Creater
+//
+//  Viper Creater 2.0
 //  [MODEL]Interactor.swift
-//  Created by Umut BOZ on 29/07/2018.
+//  Created by Umut BOZ on 04/09/2018.
 //  Copyright © 2018 OneFrame Mobile - Koçsistem All rights reserved.
 //
 import UIKit
-//import PKHUD
 
-class [MODEL]Interactor: [MODEL]InteractorInputProtocol {
+class [MODEL]Interactor {
     weak var presenter: [MODEL]InteractorOutputProtocol?
-    var localDatamanager: [MODEL]LocalDataManagerInputProtocol?
-    var remoteDatamanager: [MODEL]RemoteDataManagerInputProtocol?
-    
-    /*
-    func retrieve[MODEL]List() {
-        do {
-            
-            if let [MODEL]List = try localDatamanager?.retrieve[MODEL]List() {
-                if  [MODEL]List.isEmpty {
-                    remoteDatamanager?.retrieve[MODEL]()
-                }else
-                {
-                     presenter?.didRetrieve[MODEL]s([MODEL]List)
-                }
-                
-            }else
-            {
-                remoteDatamanager?.retrieve[MODEL]List()
-            }
-           
-            //remoteDatamanager?.retrieve[MODEL]List()
-            
-        } catch {
-            presenter?.didRetrieve[MODEL]s([])
-        }
-    }
-    */
 
-        
+    //DONT REMOVE '{FOR SUB_IN}' COMMENT LINE
+    //{FOR SUB_IN}
 }
 
-extension [MODEL]Interactor: [MODEL]RemoteDataManagerOutputProtocol {
-    
+//MARK: - [MODEL]
+extension [MODEL]Interactor: [MODEL]InteractorInputProtocol {
     /*
-    func on[MODEL]sRetrieved(_ [MODEL]s: [[MODEL]]) {
-        presenter?.didRetrieve[MODEL]s([MODEL]s)
-        
-        do {
-             try localDatamanager?.save[MODEL]s([MODEL]s) 
-        }
-        catch
-        {
-            
-        }
-    }
-    
-    func onError() {
-        presenter?.onError()
-    }
-    */
-    
+     Authentication module consume or create data operations
+     */
 }
 
-
+//DONT REMOVE '{FOR SUB}' COMMENT LINE
+//{FOR SUB}

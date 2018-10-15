@@ -122,7 +122,7 @@ parent_module_type = '-p'
 sub_module_type = '-s'
 folders = [WIREFRAME, INTERACTOR, VIEW ,PRESENTER, PROTOCOLS ]
 ##CURRENT_DEV_ENV LOCAL OR ONLINE(Github)
-CURRENT_DEV_ENV = DEV_ENV.LOCAL
+CURRENT_DEV_ENV = DEV_ENV.ONLINE
 SWIFT = ".swift"
 FOR_CHILD_INNER = "//{FOR SUB_IN}"
 FOR_CHILD = "//{FOR SUB}"
@@ -140,8 +140,8 @@ def initVariables():
         CHILD_WIFRAME_MODULE_METHOD_INNER_TEMPLATE = ONLINE_FOLDER + CHILD_WIFRAME_MODULE_METHOD_INNER_TEMPLATE
         CHILD_PRESENTER_TEMPLATE = ONLINE_FOLDER + CHILD_PRESENTER_TEMPLATE
         CHILD_VIEW_TEMPLATE = ONLINE_FOLDER + CHILD_VIEW_TEMPLATE
-        CHILD_INTERACTOR_INNER_MODULE_TEMPLATE = ONLINE + CHILD_INTERACTOR_INNER_MODULE_TEMPLATE
-        CHILD_INTERACTOR_PRESENTER_MODULE_FIELD_TEMPLATE = ONLINE + CHILD_INTERACTOR_PRESENTER_MODULE_FIELD_TEMPLATE
+        CHILD_INTERACTOR_INNER_MODULE_TEMPLATE = ONLINE_FOLDER + CHILD_INTERACTOR_INNER_MODULE_TEMPLATE
+        CHILD_INTERACTOR_PRESENTER_MODULE_FIELD_TEMPLATE = ONLINE_FOLDER + CHILD_INTERACTOR_PRESENTER_MODULE_FIELD_TEMPLATE
 
     else:
         PROTOCOL_TEMPLATE = TEMPLATE_FOLDER + PROTOCOL_TEMPLATE
@@ -260,6 +260,13 @@ def removeChildContent(childInnerTemplate,removingModule):
     #print remove_replace_content
     appendFile(fileName=templateDataPath,content=remove_replace_content, isTruncate=True)
 
+def removeChildFile(module, subTemplateFile,subModuleFileName):
+    sub_created_filename = parent_module + subModuleFileName
+    showErrorMessages(MESSAGE.INFO,sub_created_filename)
+	#model wirefamre replacement
+    sub_created_file_path = root_path + module + CODING.SLASH + sub_created_filename
+    if os.path.exists(sub_created_file_path):
+        os.remove(sub_created_file_path)
 
 def createSubModule(module, subTemplateFile,subModuleFileName):
     #WIREFRAME operations BEGIN
@@ -362,7 +369,19 @@ if len(sys.argv) >= 2:
             childInsertMember(childInnerTemplate=CHILD_INTERACTOR_INNER_MODULE_TEMPLATE,insertingModule=INTERACTOR, subType=1)
         else:
             showErrorMessages(MESSAGE.ERROR,"viperize " + parent_module + " not found")
-    elif intern(module_type) is intern(sub_module_type) and len(sys.argv) <> 4:
+    elif intern(module_type) is intern(sub_module_type) and len(sys.argv) == 5 and str(sys.argv[4]).lower() == "remove".lower():
+        sub_module = str(sys.argv[3])
+        child_replacement = { "[MODEL]" : parent_module , "[modelLowerCase]" : parent_module.lower(), "[SUB]" : sub_module }
+        removeChildContent(childInnerTemplate=CHILD_PROTOCOL_WIREFRAME_MODULE_METHOD_TEMPLATE, removingModule=PROTOCOLS)
+        removeChildContent(childInnerTemplate=CHILD_PROTOCOL_INNER_MODULE_TEMPLATE, removingModule=PROTOCOLS)
+
+        removeChildContent(childInnerTemplate=CHILD_WIFRAME_MODULE_METHOD_INNER_TEMPLATE, removingModule=WIREFRAME)
+        removeChildContent(childInnerTemplate=CHILD_INTERACTOR_PRESENTER_MODULE_FIELD_TEMPLATE, removingModule = INTERACTOR)
+        removeChildContent(childInnerTemplate=CHILD_INTERACTOR_INNER_MODULE_TEMPLATE, removingModule=INTERACTOR)
+        removeChildFile(module=PRESENTER,subTemplateFile=CHILD_PRESENTER_TEMPLATE,subModuleFileName=sub_module + presenter_filename)
+        removeChildFile(module=VIEW,subTemplateFile=CHILD_VIEW_TEMPLATE,subModuleFileName=sub_module + view_filename)
+
+    elif intern(module_type) is intern(sub_module_type) and len(sys.argv) != 4:
         showErrorMessages(MESSAGE.ERROR,"viperize -typeName -parentModuleName -subModule")
         showErrorMessages(MESSAGE.ERROR,"-subModule command has not found")
     else:

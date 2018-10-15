@@ -102,4 +102,10 @@ class func createProductDetailModule() -> UIViewController {
     
 
 
+    
+
+
+    
+
+
 }

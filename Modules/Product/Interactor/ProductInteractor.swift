@@ -16,6 +16,8 @@ class ProductInteractor {
     
     
     
+    
+    
 }
 
 //MARK: - Product
